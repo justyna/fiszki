@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.jl.spring.data.DBUser" table="USERS" schema="public">
+		<id name="idUser" column="iduser" type="int">
+			<generator class="identity"/>
+		</id>
+		<property name="pass" type="string" column="pass" />
+		<property name="email" type="string"  column="email" />
+		<property name="roleUser" type="string" column="roleuser" />
+		<property name="deleted" type="boolean" column="deleted" />
+		<set name="bundleses" table="bundles" inverse="true" lazy="true" fetch="select">
+			<key>
+				<column name="idbundle"></column>
+			</key>
+			<one-to-many class="com.jl.spring.data.DBBundle"/>
+		</set>
+	</class>
+</hibernate-mapping>

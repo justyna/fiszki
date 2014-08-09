@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-03-20 13:46:50 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.jl.spring.data.DBStats" table="stats" schema="public">
+        <id name="idstatistic" type="int">
+            <column name="idstatistic" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="users" class="com.jl.spring.data.DBUser" fetch="select">
+            <column name="iduser" />
+        </many-to-one>
+        <many-to-one name="cards" class="com.jl.spring.data.DBCard" fetch="select">
+            <column name="idcard" />
+        </many-to-one>
+        <property name="allanswers" type="java.lang.Integer">
+            <column name="allanswers" />
+        </property>
+        <property name="allcorrect" type="java.lang.Integer">
+            <column name="allcorrect" />
+        </property>
+        <property name="allincorrect" type="java.lang.Integer">
+            <column name="allincorrect" />
+        </property>
+    </class>
+</hibernate-mapping>

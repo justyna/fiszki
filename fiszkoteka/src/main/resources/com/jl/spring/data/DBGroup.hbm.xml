@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-03-20 13:46:50 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.jl.spring.data.DBGroup" table="groups" schema="public">
+        <id name="idgroup" type="int">
+            <column name="idgroup" />
+            <generator class="identity" />
+        </id>
+        <property name="namegroups" type="string">
+            <column name="namegroups" />
+        </property>
+        <set name="usersgroupses" table="usersgroups" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idgroup" />
+            </key>
+            <one-to-many class="com.jl.spring.data.DBUsersGroups" />
+        </set>
+    </class>
+</hibernate-mapping>

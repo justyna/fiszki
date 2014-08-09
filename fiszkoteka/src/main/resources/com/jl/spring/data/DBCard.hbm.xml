@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jl.spring.data.DBCard" table="cards" schema="public">
+        <id name="idcard" type="int">
+            <column name="idcard" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="bundles" class="com.jl.spring.data.DBBundle" fetch="select">
+            <column name="idbundle" />
+        </many-to-one>
+        <property name="langword" type="string">
+            <column name="langword" />
+        </property>
+        <property name="langtranslation" type="string">
+            <column name="langtranslation" />
+        </property>
+        <property name="mp3file" type="string">
+            <column name="mp3file" />
+        </property>
+        <property name="picture" type="string">
+            <column name="picture" />
+        </property>
+        <property name="definition" type="string">
+            <column name="definition" />
+        </property>
+        <property name="word" type="string">
+            <column name="word" />
+        </property>
+        <property name="translation" type="string">
+            <column name="translation" />
+        </property>
+        <property name="numberanswer" type="java.lang.Integer">
+            <column name="numberanswer" />
+        </property>
+        <property name="incorrect" type="java.lang.Integer">
+            <column name="incorrect" />
+        </property>
+        <property name="correct" type="java.lang.Integer">
+            <column name="correct" />
+        </property>
+        <set name="statses" table="stats" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcard" />
+            </key>
+            <one-to-many class="com.jl.spring.data.DBStats" />
+        </set>
+    </class>
+</hibernate-mapping>
