@@ -4,11 +4,18 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 
+/**
+ * 
+ * @author oem1
+ * Walidator formularza rejestracji
+ */
 public class RegisterValidator {
 
 	@Email
+	//email
 	private String email;
 	@Size(min=8, max=255)
+	//has³o
 	private String password;
 	
 	//Wyrazenia regularne????
@@ -36,7 +43,7 @@ public class RegisterValidator {
 	
 	public RegisterValidator() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public RegisterValidator(String email, String password, String repassword) {

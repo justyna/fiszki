@@ -3,6 +3,11 @@ package com.jl.spring.validator;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
+/**
+ * 
+ * @author oem1
+ * W³asny walidator, który sprawdza przy rejestracji czy has³o i jego powtórzenie siê zgadzaj¹
+ */
 @Component("registatorValidator")
 public class RegistrationValidation {
 

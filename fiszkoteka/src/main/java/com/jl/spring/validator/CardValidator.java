@@ -2,19 +2,31 @@ package com.jl.spring.validator;
 
 import javax.validation.constraints.Size;
 
+/**
+ * 
+ * @author oem1
+ * Klasa odpowiedzialna za walidacjê formularzy dodawania, edycji fiszek
+ */
 public class CardValidator {
 
 	@Size(min=3, max=255, message="Liczba znaków powinna zawieraæ siê w przedziale 3 a 255.")
+	//jêzyk s³owa
 	 private String langword;
 	@Size(min=3, max=255, message="Liczba znaków powinna zawieraæ siê w przedziale 3 a 255.")
-	 private String langtranslation;
+	//jêzyk t³umaczenia 
+	private String langtranslation;
+	//œcie¿ka do pliku z nagraniem wymowy
 	 private String mp3file="BRAK";
+	 //œcie¿ka do pliku z obrazkiem
 	 private String picture="BRAK";
 	 @Size(min=3, max=255, message="Liczba znaków powinna zawieraæ siê w przedziale 3 a 255.")
+	//definicja
 	 private String definition;
 	 @Size(min=3, max=255, message="Liczba znaków powinna zawieraæ siê w przedziale 3 a 255.")
+	 //s³owo
 	 private String word;
 	 @Size(min=3, max=255, message="Liczba znaków powinna zawieraæ siê w przedziale 3 a 255.")
+	 //t³umaczenie
 	 private String translation;
 	 
 	 

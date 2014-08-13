@@ -5,12 +5,19 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * 
+ * @author oem1
+ *	Klasa odpowiedzialna za walidacjê formularzy dodawania, edycji ocen
+ */
 public class GradeValidator {
 
 	@Min(1) @Max(6) @NotNull
+	//wartoœæ oceny
 	private Integer grade;
 	
 	@Size(min=3, max=255) @NotNull
+	//Opis oceny za co
 	private String forwhat;
 	
 	public Integer getGrade() {
