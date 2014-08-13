@@ -1,13 +1,21 @@
 package com.jl.spring.data;
 
 import java.io.Serializable;
-
+/**
+ * 
+ * @author oem1
+ * Klasa mapuj¹ca tabelê bundles z bazy danych
+ */
 public class DBBundle implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	//numer id wi¹zki
 	private Integer idBundle;
+	//nazwa wi¹zki
 	private String nameBundle;
+	//zmienna odpowiedzialna za dostêp do wi¹zki, jeœli jest true-> oznacza to, ¿e wi¹zka jest wi¹zk¹ publiczn¹ dostêpn¹ dla wszystkich, jeœli jest false-> wi¹zka jest widoczna tylko dla u¿ytkownika
 	private Boolean visible;
+	//true= wi¹zka usuniêta, false= nieusuniêta
 	private Boolean deleted;
 	
 	private DBUser users;

@@ -2,12 +2,21 @@ package com.jl.spring.data;
 
 import java.io.Serializable;
 
+/**
+ * 
+ * @author oem1
+ *  Klasa mapuj¹ca tabelê grades z bazy danych
+ */
 public class DBGrade implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	//id oceny
 	private int idgrades;
+	//u¿ytkownik, który jest w³aœcielem oceny
     private DBUser users;
+    //za co dosta³ ocenê
     private String forwhat;
+    //wartoœæ oceny
     private Integer grade;
 
    public DBGrade() {

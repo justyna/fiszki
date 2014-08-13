@@ -4,21 +4,39 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ *
+ * @author oem1
+ *  Klasa mapuj¹ca tabelê cards z bazy danych
+ */
 public class DBCard implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	//id fiszki
 	private int idcard;
+	//zmienna mapuj¹ca relacjê jedna wi¹zka- wiele fiszek
     private DBBundle bundles;
+    //jêzyk s³owa
     private String langword;
+    //jêzyk t³umaczenia
     private String langtranslation;
+    //œcie¿ka do pliku mp3
     private String mp3file;
+   //œcie¿ka do rysunku
     private String picture;
+    //definicja
     private String definition;
+    //s³owo
     private String word;
+    //t³umaczenie
     private String translation;
+   //ogólna liczba odpowiedzi 
     private Integer numberanswer=0;
+    //liczba odpowiedzi niepoprawnych
     private Integer incorrect=0;
+    //liczba odpowiedzi poprawnych
     private Integer correct=0;
+    //Powi¹zana statystyka mapowana relacja
     private Set<DBStats> statses = new HashSet<DBStats>(0);
 
    public DBCard() {
