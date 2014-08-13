@@ -120,10 +120,13 @@ public class BundleController {
 	
 	@RequestMapping(value="/searchOwn", method=RequestMethod.POST)
 	public String searchBundlePost(@Valid SearchValidator searchValidator, BindingResult result,  Model model){
+		//Pobranie id zalogowanego u¿ytkownika
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		
 		Integer id = (Integer)userService.findUserByEmail(userDetail.getUsername()).getIdUser();
+		
 		List<DBBundle> bundles = bundleService.findByUserIdBundleName(id, searchValidator.getSearchText(), null, null);
 		searchValidator.setSearchText("");
 		model.addAttribute("search", searchValidator);

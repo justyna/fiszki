@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jl.spring.data.DBUser;
 import com.jl.spring.service.UserService;
-
+/**
+ * 
+ * @author oem1
+ *
+ *W tym kontrolerze znajduj¹ siê akcje zwi¹zane ze stron¹ domow¹ u¿ytkownika oraz list¹ u¿ytkowników
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -27,7 +32,7 @@ public class UserController {
 		
 		return "/home/homeuser";
 	}
-	
+	//Akcja jest wykorzystywana w widoku administratora
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String userList(Model model) {
 			List<DBUser> users = userService.getAllUsers(null, null);

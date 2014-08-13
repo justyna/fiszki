@@ -68,6 +68,7 @@ public class GroupController {
 			model.addAttribute("message", result.getFieldValue("namegroups"));
 			
 		} else {
+			//Pobranie id zalogowanego u¿ytkownika
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			UserDetails userDetail = (UserDetails) auth.getPrincipal();
 			DBUser user = userService.findUserByEmail(userDetail.getUsername());
@@ -119,6 +120,7 @@ public class GroupController {
 	
 	@RequestMapping(value="enroll")
 	public String enrollToGroup(Model model,  @RequestParam int id){
+		//pobranie danych o zalogowanym u¿ytkowniku
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		
