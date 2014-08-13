@@ -17,105 +17,141 @@ import com.jl.spring.util.HibernateUtil;
 
 @Service
 public class GroupService {
-	
+
 	@Autowired
 	private UserService userService;
-	
-	public Integer addGroup(DBGroup group){
-		Session session =HibernateUtil.getSessionFactory().openSession();
-		Transaction tx= null;
+
+	/**
+	 * metoda dodaj¹ca grupê
+	 * 
+	 * @param group- grupa
+	 * @return id grupy
+	 */
+	public Integer addGroup(DBGroup group) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = null;
 		Integer groupID = null;
-				
+
 		try {
-			tx = session.beginTransaction();			
-			groupID = (Integer)session.save(group);		
+			tx = session.beginTransaction();
+			groupID = (Integer) session.save(group);
 			tx.commit();
 		} catch (HibernateException e) {
-			 if (tx!=null) tx.rollback();
-	         e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
 		return groupID;
 	}
-	
-	public DBGroup findGroup(DBGroup group){
-		
+
+	/**
+	 * 
+	 * @param group
+	 * @return
+	 */
+	public DBGroup findGroup(DBGroup group) {
+
 		return null;
 	}
-	public List<DBGroup> findGroupByName(String name, Integer maxResult, Integer firstResult){
-		
+
+	/**
+	 * 
+	 * @param name
+	 * @param maxResult
+	 * @param firstResult
+	 * @return
+	 */
+	public List<DBGroup> findGroupByName(String name, Integer maxResult,
+			Integer firstResult) {
+
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<DBGroup> list = null;
 		try {
-		
+
 			Criteria criteria = session.createCriteria(DBGroup.class);
-			if(name != null) {		
-				   criteria.add(Restrictions.like("nameBundle", name));
+			if (name != null) {
+				criteria.add(Restrictions.like("nameBundle", name));
 			}
-			if(maxResult != null) {
+			if (maxResult != null) {
 				criteria.setMaxResults(maxResult);
-			 }
-			if(firstResult != null) {
+			}
+			if (firstResult != null) {
 				criteria.setFirstResult(firstResult);
 			}
-			list = (List<DBGroup>)criteria.list();
-		} catch(HibernateException e) {
+			list = (List<DBGroup>) criteria.list();
+		} catch (HibernateException e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		return  list;
+		return list;
 	}
 
-public List<DBGroup> findGroupByIdUser(Integer idUser, Integer maxResult, Byte firstResult){
-		
-		Session session =HibernateUtil.getSessionFactory().openSession();
+	/**
+	 * 
+	 * @param idUser
+	 * @param maxResult
+	 * @param firstResult
+	 * @return
+	 */
+	public List<DBGroup> findGroupByIdUser(Integer idUser, Integer maxResult,
+			Byte firstResult) {
+
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<DBGroup> list = null;
 		try {
 			Query query;
-			
-			if(idUser != null){		
-				query = session.createSQLQuery("select * from groups g,  usersgroups ug where g.idgroup = ug.idgroup and ug.iduser =:id ").addEntity(DBGroup.class) ;
+
+			if (idUser != null) {
+				query = session
+						.createSQLQuery(
+								"select * from groups g,  usersgroups ug where g.idgroup = ug.idgroup and ug.iduser =:id ")
+						.addEntity(DBGroup.class);
 				query.setParameter("id", idUser);
 			} else {
-				query = session.createSQLQuery("select * from groups g").addEntity(DBGroup.class) ;
-				
+				query = session.createSQLQuery("select * from groups g")
+						.addEntity(DBGroup.class);
+
 			}
-			if(maxResult != null){
+			if (maxResult != null) {
 				query.setMaxResults(maxResult);
-			 }
-			if(firstResult != null){
+			}
+			if (firstResult != null) {
 				query.setFirstResult(firstResult);
 			}
-				list = (List<DBGroup>)query.list();
-		} catch(HibernateException e) {
+			list = (List<DBGroup>) query.list();
+		} catch (HibernateException e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		return  list;
+		return list;
 	}
 
-public DBGroup findGroupByIdGroup(Integer idGroup){
-	
-	Session session =HibernateUtil.getSessionFactory().openSession();
-	DBGroup group = null;
-	
-	try {
-		Criteria criteria = session.createCriteria(DBGroup.class)
-				.add(Restrictions.eq("idgroup", idGroup));
-		group=(DBGroup) criteria.uniqueResult();
-	} catch(HibernateException e) {
-		e.printStackTrace();
-	} finally {
-		session.close();
+	/**
+	 * 
+	 * @param idGroup
+	 * @return
+	 */
+	public DBGroup findGroupByIdGroup(Integer idGroup) {
+
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		DBGroup group = null;
+
+		try {
+			Criteria criteria = session.createCriteria(DBGroup.class).add(
+					Restrictions.eq("idgroup", idGroup));
+			group = (DBGroup) criteria.uniqueResult();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return group;
+
 	}
-	
-	return group;
-	
-}
-	
-	
-	
+
 }

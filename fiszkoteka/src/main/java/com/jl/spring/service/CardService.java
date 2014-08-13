@@ -15,13 +15,23 @@ import com.jl.spring.data.DBCard;
 import com.jl.spring.data.DBGroup;
 import com.jl.spring.data.DBUser;
 import com.jl.spring.util.HibernateUtil;
-
+/**
+ * 
+ * @author oem1
+ * Klasa obs³uguj¹ca operacje na bazie danych zwi¹zane z fiszkami
+ */
 @Service
 public class CardService {
 
 	@Autowired
 	BundleService bundleService;
 	
+	/**
+	 * 
+	 * @param card- fiszka
+	 * @param idBundle- id wi¹zki
+	 * @return id dodanej fiszki
+	 */
 	public Integer addCard(DBCard card, int idBundle){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx= null;
@@ -48,6 +58,10 @@ public class CardService {
 		return cardID;
 	}
 	
+	/**
+	 * aktualizacja fiszki
+	 * @param card- fiszka
+	 */
 	public void updateCard(DBCard card) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
@@ -64,6 +78,10 @@ public class CardService {
 		}
 	}
 	
+	/**
+	 * Usuwanie fiszki
+	 * @param card- fiszka
+	 */
 	public void deleteCard(DBCard card) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
@@ -80,7 +98,11 @@ public class CardService {
 		}
 		
 	}
-	
+	/**
+	 * 
+	 * @param user- u¿ytkownik
+	 * @return lista fiszek u¿ytkownika
+	 */
 	public List<DBCard> listCardByUser(DBUser user){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<DBCard> list = null;
@@ -102,6 +124,13 @@ public class CardService {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param id- id wi¹zki
+	 * @param length- liczba fiszek
+	 * @param offset- numer pierwszej fiszki
+	 * @return lista fiszek
+	 */
 	public List<DBCard> findByBundleId(int id, Integer length, Integer offset) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -121,7 +150,11 @@ public class CardService {
 		
 		return cards;
 	}
-	
+	/**
+	 * 
+	 * @param id- id fiszki
+	 * @return fiszka
+	 */
 	public DBCard findCardById(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		DBCard card = null;

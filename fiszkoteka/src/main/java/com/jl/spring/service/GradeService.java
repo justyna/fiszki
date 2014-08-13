@@ -12,10 +12,19 @@ import org.springframework.stereotype.Service;
 
 import com.jl.spring.data.DBGrade;
 import com.jl.spring.util.HibernateUtil;
-
+/**
+ * 
+ * @author oem1
+ * Klasa obs³uguj¹ca operacje na bazie danych zwi¹zane z ocenami
+ */
 @Service
 public class GradeService {
-
+	
+/**
+ * dodaje ocenê do bazy
+ * @param grade- ocena
+ * @return id dodanej oceny
+ */
 	public Integer addGrade(DBGrade grade){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
@@ -35,7 +44,11 @@ public class GradeService {
 	}
 	
 	
-	
+	/**
+	 * znajduje listê ocen przypisanych do u¿ytkownika
+	 * @param idUser- id u¿ytkownika
+	 * @return lista ocen
+	 */
 	public List<DBGrade> findGradeByUserId(Integer idUser){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<DBGrade> list = null;
@@ -54,7 +67,13 @@ public class GradeService {
 
 		return list;
 	}
-	//TODO
+	
+	/**
+	 * 
+	 * @param idUser- id u¿ytkownika
+	 * @param idGroup- id grupy
+	 * @return lista ocen u¿ytkowników nale¿¹cych do grupy
+	 */
 	public List<DBGrade> findGradeByUserIdGroupId(Integer idUser, Integer idGroup){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<DBGrade> list = null;
@@ -74,6 +93,10 @@ public class GradeService {
 		return list;
 	}
 	
+	/**
+	 * aktualizacja oceny
+	 * @param grade- ocena
+	 */
 	public void updateGrade(DBGrade grade) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -91,7 +114,10 @@ public class GradeService {
 		}
 		
 	}
-	
+	/**
+	 * metoda usuwa ocenê
+	 * @param grade-ocena
+	 */
 	public void deleteGrade(DBGrade grade) {
 		Session session  = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
@@ -108,6 +134,11 @@ public class GradeService {
 		}
 	}
 	
+	/**
+	 * metoda znajduje ocenê o podanym numerze id
+	 * @param idGrade id oceny
+	 * @return ocena
+	 */
 	public DBGrade findGradeById(Integer idGrade){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		DBGrade grade = null;

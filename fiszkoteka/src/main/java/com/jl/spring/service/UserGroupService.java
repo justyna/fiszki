@@ -18,6 +18,12 @@ import com.jl.spring.util.HibernateUtil;
 @Service
 public class UserGroupService {
 
+	/**
+	 * utworzenie relacji miêdzy u¿ytkownikiem a grup¹
+	 * @param user- u¿ytkownik
+	 * @param group- grupa
+	 * @return id wiersza w tabeli usersgroups
+	 */
 	public Integer addUserGroup(DBUser user, DBGroup group) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -40,6 +46,12 @@ public class UserGroupService {
 		return idUG;
 	}
 	
+	/**
+	 * 
+	 * @param idUser
+	 * @param idGroup
+	 * @return 
+	 */
 	public DBUsersGroups findUsersGroups(Integer idUser, Integer idGroup) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		DBUsersGroups ug = null;
@@ -61,6 +73,11 @@ public class UserGroupService {
 		return ug;
 	}
 	
+	/**
+	 * usuniêcie relacji miêdzy grup¹ a u¿ytkownikiem
+	 * @param idUser- id u¿ytkownika
+	 * @param idGroup- id grupy
+	 */
 	public void deleteUserGroup(Integer idUser, Integer idGroup) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
@@ -79,6 +96,11 @@ public class UserGroupService {
 		
 	}
 	
+	/**
+	 * 
+	 * @param idGroup- id grupy
+	 * @return lista u¿ytkowników nale¿¹cych do grupy
+	 */
 	public List<DBUser> findUsers (Integer idGroup) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
