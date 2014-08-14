@@ -19,6 +19,7 @@ public class RoleBasedAuthenticationSuccessHandler implements AuthenticationSucc
 		this.roleUrlMap = roleUrlMap;
 	}
 
+	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request,
 			HttpServletResponse response, Authentication authentication) throws IOException,

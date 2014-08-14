@@ -37,9 +37,10 @@
 <c:forEach items="${bundles}" var="bundle" >
 <td class="col-md-8"> ${bundle.nameBundle} </td>
 <td class="col-md-4">
-<form action="${bundle.idBundle}/card/addcard" >
+<a href="/spring/bundle/copy=${bundle.idBundle}"><button>Dodaj do swoich wiązek</button></a>
+<!--<form action="${bundle.idBundle}/card/addcard" >
     <button type="submit">Dodaj</button>
-</form>
+</form>-->
 </td>
 </c:forEach>
 </tr>

@@ -26,17 +26,26 @@ import com.jl.spring.validator.GroupValidator;
 @Controller
 @RequestMapping("grade")
 public class GradeController {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private GradeService gradeService;
-	
-	@RequestMapping(value="add")
-	public String addGrade(Model model, @Valid GradeValidator gradeValidator, BindingResult result, @RequestParam int id) {
-		
-		if(result.hasErrors()) {
+
+	/**
+	 * 
+	 * @param model
+	 * @param gradeValidator
+	 * @param result
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "add")
+	public String addGrade(Model model, @Valid GradeValidator gradeValidator,
+			BindingResult result, @RequestParam int id) {
+
+		if (result.hasErrors()) {
 			model.addAttribute("grade", new DBGrade());
 			model.addAttribute("id", id);
 			return "grade/add";
@@ -44,66 +53,99 @@ public class GradeController {
 			DBUser user = userService.findUserById(id);
 			DBGrade grade = new DBGrade();
 			grade.setForwhat(result.getFieldValue("forwhat").toString());
-			grade.setGrade(Integer.valueOf(result.getFieldValue("grade").toString()));
+			grade.setGrade(Integer.valueOf(result.getFieldValue("grade")
+					.toString()));
 			grade.setUsers(user);
 			gradeService.addGrade(grade);
 			return "redirect:grade/list";
-			
+
 		}
-			
-		
+
 	}
-	
-	@RequestMapping(value="edit")
-	public String editGrade(Model model, @RequestParam int id, @Valid GradeValidator gradeValidator, BindingResult result) {
-		
-		DBGrade grade  = gradeService.findGradeById(id);
+
+	/**
+	 * 
+	 * @param model
+	 * @param id
+	 * @param gradeValidator
+	 * @param result
+	 * @return
+	 */
+	@RequestMapping(value = "edit")
+	public String editGrade(Model model, @RequestParam int id,
+			@Valid GradeValidator gradeValidator, BindingResult result) {
+
+		DBGrade grade = gradeService.findGradeById(id);
 		model.addAttribute("grade", grade);
 		model.addAttribute("id", id);
-		
-		if(result.hasErrors()) {
+
+		if (result.hasErrors()) {
 			return "grade/edit";
 		} else {
 			grade.setForwhat(result.getFieldValue("forwhat").toString());
-			grade.setGrade(Integer.valueOf((result.getFieldValue("grade").toString())));
+			grade.setGrade(Integer.valueOf((result.getFieldValue("grade")
+					.toString())));
 			gradeService.updateGrade(grade);
 			return "redirect:grade/list";
 		}
-		
-		
+
 	}
-	
-	@RequestMapping(value="delete")
-	public @ResponseBody String deleteGrade(Model model, @RequestParam int id) {
-		//TODO ulepszyc
-		DBGrade grade  = gradeService.findGradeById(id);
-		
+
+	/**
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "delete")
+	public @ResponseBody
+	String deleteGrade(Model model, @RequestParam int id) {
+		// TODO ulepszyc
+		DBGrade grade = gradeService.findGradeById(id);
+
 		gradeService.deleteGrade(grade);
-		
-		
+
 		return "";
 	}
-	
-	@RequestMapping(value="mine")
+
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "mine")
 	public String myGrade(Model model) {
-		
+
 		return null;
 	}
-	
-	@RequestMapping(value="list")
+
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "list")
 	public String listGrade(Model model) {
 		return null;
 	}
-	
-	@RequestMapping(value="show")
-	public String showGrade(Model model, @RequestParam int id, @RequestParam int gid) {
-		//System.out.println("Parametr id1 " + gid);
+
+	/**
+	 * 
+	 * @param model
+	 * @param id
+	 * @param gid
+	 * @return
+	 */
+	@RequestMapping(value = "show")
+	public String showGrade(Model model, @RequestParam int id,
+			@RequestParam int gid) {
+		// System.out.println("Parametr id1 " + gid);
 		List<DBGrade> grades = gradeService.findGradeByUserIdGroupId(id, gid);
 		System.out.println(grades);
 		model.addAttribute("grades", grades);
 		model.addAttribute("groupId", gid);
 		return "grade/list";
-		
+
 	}
 
 }

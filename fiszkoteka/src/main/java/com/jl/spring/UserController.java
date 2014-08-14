@@ -27,12 +27,23 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	/**
+	 * 
+	 * @param locale
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
 		return "/home/homeuser";
 	}
 	//Akcja jest wykorzystywana w widoku administratora
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String userList(Model model) {
 			List<DBUser> users = userService.getAllUsers(null, null);

@@ -23,19 +23,27 @@ import com.jl.spring.validator.CardValidator;
 @RequestMapping("card")
 public class CardController {
 
-	@Autowired(required=true)
+	@Autowired(required = true)
 	@Resource(name = "cardService")
 	private CardService cardService;
-	
+
+	/**
+	 * 
+	 * @param cardValidator
+	 * @param result
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String cardadd(@Valid CardValidator cardValidator, BindingResult result, Model model, @RequestParam int id) {
-		DBCard cardDB =new DBCard();
+	public String cardadd(@Valid CardValidator cardValidator,
+			BindingResult result, Model model, @RequestParam int id) {
+		DBCard cardDB = new DBCard();
 		model.addAttribute("card", cardDB);
-		if(result.hasErrors()) {
-            return "/card/addcard";
-        }
-		
-		
+		if (result.hasErrors()) {
+			return "/card/addcard";
+		}
+
 		Integer cardID = null;
 		cardDB.setWord(cardValidator.getWord());
 		cardDB.setTranslation(cardValidator.getTranslation());
@@ -44,23 +52,31 @@ public class CardController {
 		cardDB.setLangtranslation(cardValidator.getLangtranslation());
 		cardDB.setMp3file(cardValidator.getMp3file());
 		cardDB.setPicture(cardValidator.getPicture());
-				
-        cardID = cardService.addCard(cardDB, id);
-        model.addAttribute("message", "Successfully saved card: " + cardValidator.toString());
-		
-		
+
+		cardID = cardService.addCard(cardDB, id);
+		model.addAttribute("message", "Successfully saved card: "
+				+ cardValidator.toString());
+
 		return "card/successCard";
 	}
-	
+
+	/**
+	 * 
+	 * @param cardValidator
+	 * @param result
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String cardpadd(@Valid CardValidator cardValidator, BindingResult result, Model model, @RequestParam int id) {
-		DBCard cardDB =new DBCard();
+	public String cardpadd(@Valid CardValidator cardValidator,
+			BindingResult result, Model model, @RequestParam int id) {
+		DBCard cardDB = new DBCard();
 		model.addAttribute("card", cardDB);
-		if(result.hasErrors()) {
-            return "/card/addcard";
-        }
-         
-		
+		if (result.hasErrors()) {
+			return "/card/addcard";
+		}
+
 		Integer cardID = null;
 		cardDB.setWord(cardValidator.getWord());
 		cardDB.setTranslation(cardValidator.getTranslation());
@@ -72,52 +88,87 @@ public class CardController {
 		System.out.println(cardDB.getMp3file());
 		System.out.println(cardDB.getWord());
 
-		
-        cardID = cardService.addCard(cardDB, id);
-        model.addAttribute("message", "Successfully saved card: " + cardValidator.toString());
-		
-		
+		cardID = cardService.addCard(cardDB, id);
+		model.addAttribute("message", "Successfully saved card: "
+				+ cardValidator.toString());
+
 		return "/card/successCard";
 	}
-	
-	@RequestMapping(value="/edit")
+
+	/**
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/edit")
 	public String editCard(Model model, @RequestParam int id) {
 		DBCard card = cardService.findCardById(id);
 		model.addAttribute("card", card);
 		return "/card/editcard";
 	}
-	
-	@RequestMapping(value="/show")
+
+	/**
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/show")
 	public String showCard(Model model, @RequestParam int id) {
 		DBCard card = cardService.findCardById(id);
 		model.addAttribute("card", card);
 		return "/card/showcard";
 	}
-	
-	@RequestMapping(value="/deleteconfirmation")
-	public String deleteConfirmCard(Model model, @RequestParam int id){
+
+	/**
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/deleteconfirmation")
+	public String deleteConfirmCard(Model model, @RequestParam int id) {
 		model.addAttribute("id", id);
 		return "/card/deletecard";
 	}
-	
-	@RequestMapping(value="/cancel")
-	public String cancelDeleteCard(Model model, @RequestParam int id){
+
+	/**
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/cancel")
+	public String cancelDeleteCard(Model model, @RequestParam int id) {
 		DBCard card = cardService.findCardById(id);
 		Integer bundleId = card.getBundles().getIdBundle();
-		return "redirect:/card/list?id="+bundleId;
-		
+		return "redirect:/card/list?id=" + bundleId;
+
 	}
-	
-	@RequestMapping(value="/delete")
-	public String deleteCard(Model model, @RequestParam int id){
+
+	/**
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/delete")
+	public String deleteCard(Model model, @RequestParam int id) {
 		DBCard card = cardService.findCardById(id);
 		Integer bundleId = card.getBundles().getIdBundle();
 		cardService.deleteCard(card);
-		return "redirect:/card/list?id="+bundleId;
+		return "redirect:/card/list?id=" + bundleId;
 	}
-	
-	@RequestMapping(value="/list")
-	public String listCard (Model model, @RequestParam int id) {
+
+	/**
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/list")
+	public String listCard(Model model, @RequestParam int id) {
 		List<DBCard> cards = cardService.findByBundleId(id, null, null);
 		model.addAttribute("id", id);
 		model.addAttribute("cards", cards);

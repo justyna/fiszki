@@ -170,4 +170,30 @@ public class CardService {
 		return card;
 	}
 	
+	/**
+	 * 
+	 * @param bundle- wi¹zka
+	 * @param idUser- id u¿ytkownika
+	 */
+	public void copyCardList(DBBundle bundle, Integer idUser){
+		//Pobierz listê fiszek przypisanych do wi¹zki
+		List<DBCard> cards = findByBundleId(bundle.getIdBundle(), null, null);
+		//Dodaj now¹ wi¹zkê
+		Integer idBundle = bundleService.add(idUser, bundle.getNameBundle(), bundle.getVisible());
+		//ZnajdŸ wi¹zkê
+		DBBundle bundleL = bundleService.findBundleById(idBundle);
+		//Iteracja po wi¹zkach przypisanych do wi¹zki
+		for (DBCard dbCard : cards) {
+			//Zerowanie ustawionych wczeœniej wartoœci
+			dbCard.setCorrect(0);
+			dbCard.setNumberanswer(0);
+			dbCard.setIncorrect(0);
+			dbCard.setStatses(null);
+			dbCard.setBundles(bundleL);
+			addCard(dbCard, idBundle);
+		}
+		
+		
+	}
+	
 }

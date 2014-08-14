@@ -28,6 +28,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
+	/**
+	 * 
+	 * @return
+	 */
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView defaultPage() {
 
@@ -38,7 +42,10 @@ public class HomeController {
 		return model;
 
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
 	public ModelAndView adminPage() {
 
@@ -50,7 +57,14 @@ public class HomeController {
 		return model;
 
 	}
-
+	
+	/**
+	 * 
+	 * @param error
+	 * @param logout
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, HttpServletRequest request) {
@@ -69,6 +83,12 @@ public class HomeController {
 
 	}
 
+	/**
+	 * 
+	 * @param request
+	 * @param key
+	 * @return
+	 */
 	// customize the error message
 	private String getErrorMessage(HttpServletRequest request, String key) {
 
@@ -87,6 +107,10 @@ public class HomeController {
 	}
 
 	// for 403 access denied page
+	/**
+	 * 
+	 * @return
+	 */
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public ModelAndView accesssDenied() {
 

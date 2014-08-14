@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value="/teacher")
 public class TeacherController {
-	
+	/**
+	 * 
+	 * @return
+	 */
 	@RequestMapping(value = "home", method =  RequestMethod.GET)
-	public String home (Model model) {
+	public String home () {
 		return "/home/hometeacher";
 	}
 	

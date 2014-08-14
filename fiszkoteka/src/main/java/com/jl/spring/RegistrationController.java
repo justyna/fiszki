@@ -32,6 +32,11 @@ public class RegistrationController {
 		this.rv = rv;
 	}
 	
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String showRegistration(Map model) {
 		RegisterValidator registerValidator = new RegisterValidator();
@@ -40,7 +45,13 @@ public class RegistrationController {
 		
 	}
 
-	
+	/**
+	 * 
+	 * @param registerValidator
+	 * @param result
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public String processRegistration(@Valid RegisterValidator registerValidator, BindingResult result, Model model) {
 		rv.validate(registerValidator, result);
