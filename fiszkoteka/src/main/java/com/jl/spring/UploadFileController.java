@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.jl.spring.validator.UploadItem;
+import com.jl.spring.form.UploadItem;
 
 @Controller
 @RequestMapping(value="/uploadfile")

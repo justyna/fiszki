@@ -7,7 +7,7 @@ import java.io.OutputStream;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jl.spring.data.DBCard;
-import com.jl.spring.validator.UploadItem;
+import com.jl.spring.form.UploadItem;
 
 public class FileService {
 

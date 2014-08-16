@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jl.spring.data.DBCard;
+import com.jl.spring.form.CardForm;
 import com.jl.spring.service.CardService;
-import com.jl.spring.validator.CardValidator;
+import com.jl.spring.service.TestService;
 
 @Controller
 @RequestMapping("card")
@@ -26,6 +27,9 @@ public class CardController {
 	@Autowired(required = true)
 	@Resource(name = "cardService")
 	private CardService cardService;
+	
+	@Autowired
+	private TestService testService;
 
 	/**
 	 * 
@@ -36,7 +40,7 @@ public class CardController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String cardadd(@Valid CardValidator cardValidator,
+	public String cardadd(@Valid CardForm cardValidator,
 			BindingResult result, Model model, @RequestParam int id) {
 		DBCard cardDB = new DBCard();
 		model.addAttribute("card", cardDB);
@@ -69,7 +73,7 @@ public class CardController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String cardpadd(@Valid CardValidator cardValidator,
+	public String cardpadd(@Valid CardForm cardValidator,
 			BindingResult result, Model model, @RequestParam int id) {
 		DBCard cardDB = new DBCard();
 		model.addAttribute("card", cardDB);
@@ -168,10 +172,34 @@ public class CardController {
 	 * @return
 	 */
 	@RequestMapping(value = "/list")
-	public String listCard(Model model, @RequestParam int id) {
+	public String listCard(Model model, @RequestParam int id,
+			@RequestParam String type) {
 		List<DBCard> cards = cardService.findByBundleId(id, null, null);
 		model.addAttribute("id", id);
+
 		model.addAttribute("cards", cards);
-		return "/card/cardlist";
+		System.out.println(type);
+		if (type == "pub") {
+			// przegl¹daj fiszki jako publiczne
+			return "/card/publiccardlist";
+		} else {
+			// przegl¹daj fiszki jako prywatne
+			return "/card/cardlist";
+		}
+
 	}
+
+	@RequestMapping(value = "/test")
+	public String testCard(Model model, @RequestParam int id) {
+		DBCard card = testService.chooseCard(id);
+		model.addAttribute("card", card);
+		return null;
+	}
+
+	/*
+	 * @RequestMapping(value="/publiclist") public String publiclistCard(Model
+	 * model, @RequestParam int id){ List<DBCard> cards =
+	 * cardService.findByBundleId(id, null, null); model.addAttribute("id", id);
+	 * model.addAttribute("cards", cards); return "/card/publiccardlist"; }
+	 */
 }

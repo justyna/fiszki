@@ -33,13 +33,15 @@ public class HomeController {
 	 * @return
 	 */
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
-	public ModelAndView defaultPage() {
+	//public ModelAndView defaultPage() {
+	public String defaultPagr() {
 
-		ModelAndView model = new ModelAndView();
+	/*	ModelAndView model = new ModelAndView();
 		model.addObject("title", "Spring Security + Hibernate Example");
 		model.addObject("message", "This is default page!");
 		model.setViewName("hello");
-		return model;
+		return model;*/
+		return "/home/homeanonymous";
 
 	}
 	/**

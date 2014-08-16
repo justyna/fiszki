@@ -17,9 +17,9 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.tags.Param;
 
 import com.jl.spring.data.DBUser;
+import com.jl.spring.form.UserForm;
 import com.jl.spring.service.UserService;
 import com.jl.spring.util.ROLE;
-import com.jl.spring.validator.UserValidator;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -30,9 +30,9 @@ public class AdminController {
 
 	// Strona glowna
 	/**
-	 * 
+	 * akcja zwi¹zana ze stron¹ 
 	 * @param model
-	 * @return
+	 * @return- œcie¿ka do widoku
 	 */
 	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String home(Model model) {
@@ -66,7 +66,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "editform", params = "ok", method = RequestMethod.POST)
-	public String editOK(Model model, @Valid UserValidator userValidator,
+	public String editOK(Model model, @Valid UserForm userValidator,
 			BindingResult result, HttpServletRequest request) {
 
 		// Pobranie id u¿ytkownika

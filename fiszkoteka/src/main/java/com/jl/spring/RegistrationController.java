@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jl.spring.data.DBUser;
+import com.jl.spring.form.RegisterForm;
+import com.jl.spring.form.RegistrationValidation;
 import com.jl.spring.service.UserService;
-import com.jl.spring.validator.RegisterValidator;
-import com.jl.spring.validator.RegistrationValidation;
 
 
 @Controller
@@ -39,7 +39,7 @@ public class RegistrationController {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String showRegistration(Map model) {
-		RegisterValidator registerValidator = new RegisterValidator();
+		RegisterForm registerValidator = new RegisterForm();
 		model.put("register", registerValidator);
 		return "/user/register";
 		
@@ -53,7 +53,7 @@ public class RegistrationController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String processRegistration(@Valid RegisterValidator registerValidator, BindingResult result, Model model) {
+	public String processRegistration(@Valid RegisterForm registerValidator, BindingResult result, Model model) {
 		rv.validate(registerValidator, result);
 		
 		if(result.hasErrors()) {

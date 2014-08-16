@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jl.spring.data.DBGrade;
 import com.jl.spring.data.DBGroup;
 import com.jl.spring.data.DBUser;
+import com.jl.spring.form.GradeForm;
+import com.jl.spring.form.GroupForm;
 import com.jl.spring.service.GradeService;
 import com.jl.spring.service.UserService;
-import com.jl.spring.validator.GradeValidator;
-import com.jl.spring.validator.GroupValidator;
 
 @Controller
 @RequestMapping("grade")
@@ -42,7 +42,7 @@ public class GradeController {
 	 * @return
 	 */
 	@RequestMapping(value = "add")
-	public String addGrade(Model model, @Valid GradeValidator gradeValidator,
+	public String addGrade(Model model, @Valid GradeForm gradeValidator,
 			BindingResult result, @RequestParam int id) {
 
 		if (result.hasErrors()) {
@@ -73,7 +73,7 @@ public class GradeController {
 	 */
 	@RequestMapping(value = "edit")
 	public String editGrade(Model model, @RequestParam int id,
-			@Valid GradeValidator gradeValidator, BindingResult result) {
+			@Valid GradeForm gradeValidator, BindingResult result) {
 
 		DBGrade grade = gradeService.findGradeById(id);
 		model.addAttribute("grade", grade);
