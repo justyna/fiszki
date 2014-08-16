@@ -12,6 +12,10 @@
 <br/>
 <a href="/spring/card/add?id=${id}"><button>Dodaj fiszkę</button></a>
 <br/>
+<c:if test="${cards.size() != 0}">
+	<a href="/spring/card/test?id=${id}"><button>Sprawdź wiedzę</button></a>
+</c:if>
+<br/>
 <table>
 	<tr>
 	<c:forEach items="${cards}" var="card">
