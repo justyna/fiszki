@@ -32,18 +32,25 @@
 <div class="row" >
 <table class="table table-bordered">
 <tr><th></th><th></th></tr>
-<tr>
+
 
 <c:forEach items="${bundles}" var="bundle" >
+<tr>
 <td class="col-md-8"> ${bundle.nameBundle} </td>
 <td class="col-md-4">
-<a href="/spring/bundle/copy=${bundle.idBundle}"><button>Dodaj do swoich wiązek</button></a>
+<a href="/spring/bundle/copy?id=${bundle.idBundle}"><button>Dodaj do swoich wiązek</button></a>
 <!--<form action="${bundle.idBundle}/card/addcard" >
     <button type="submit">Dodaj</button>
 </form>-->
 </td>
-</c:forEach>
+<td>
+<a href="/spring/card/list?id=${bundle.idBundle}&type=pub" >
+    <button type="submit">Fiszki</button>
+</a>
+</td>
 </tr>
+</c:forEach>
+
 </table>
 </div>
 </div>

@@ -42,7 +42,7 @@
 </spring:url>
 <td class="col-md-4"> ${bundle.nameBundle} </td>
 <td class="col-md-4">
-<a href="/spring/card/list?id=${bundle.idBundle}" >
+<a href="/spring/card/list?id=${bundle.idBundle}&type=priv" >
     <button type="submit">Fiszki</button>
 </a>
 </td>
