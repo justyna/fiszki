@@ -1,4 +1,4 @@
-package com.jl.spring.validator;
+package com.jl.spring.form;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
  * @author oem1
  * Klasa odpowiedzialna za walidacjê formularzy dodawania, edycji wi¹zki
  */
-public class BundleValidator {
+public class BundleForm {
 	
 	@NotNull
 	@Size(min=3, max=255, message="Liczba znaków powinna zawieraæ siê w przedziale 3 a 255.")
@@ -41,13 +41,13 @@ public class BundleValidator {
 		return name;
 	}
 
-	public BundleValidator(String name, String visible) {
+	public BundleForm(String name, String visible) {
 		super();
 		this.name = name;
 		this.visible = visible;
 	}
 
-	public BundleValidator() {
+	public BundleForm() {
 		
 		this.name = "";
 		this.visible= "";

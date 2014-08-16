@@ -1,4 +1,4 @@
-package com.jl.spring.validator;
+package com.jl.spring.form;
 
 import javax.validation.constraints.Size;
 /**
@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
  * @author oem1
  * Walidator formularza wyszukiwarki
  */
-public class SearchValidator {
+public class SearchForm {
 
 	@Size(max=255, message="Liczba znaków powinna byæ mniejsza ni¿ 255.")
 	//tekst do wyszukania
@@ -20,7 +20,7 @@ public class SearchValidator {
 		this.searchText = searchText;
 	}
 
-	public SearchValidator() {
+	public SearchForm() {
 		super();
 		searchText ="";
 	}

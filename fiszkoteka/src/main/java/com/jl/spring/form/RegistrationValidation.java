@@ -1,4 +1,4 @@
-package com.jl.spring.validator;
+package com.jl.spring.form;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -12,12 +12,12 @@ import org.springframework.validation.Errors;
 public class RegistrationValidation {
 
 	public boolean supports(Class<?> klass) {
-		return RegisterValidator.class.isAssignableFrom(klass);
+		return RegisterForm.class.isAssignableFrom(klass);
 		
 	}
 	
 	public void validate(Object target, Errors errors) {
-		RegisterValidator registration = (RegisterValidator) target;
+		RegisterForm registration = (RegisterForm) target;
 		if(!registration.getPassword().equals(registration.getRepassword())) {
 			errors.rejectValue("password", "matchingPassword.registration.password",
 			          "Has³a siê nie zgadzaj¹.");

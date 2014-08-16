@@ -1,4 +1,4 @@
-package com.jl.spring.validator;
+package com.jl.spring.form;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
  * @author oem1
  * Klasa odpowiedzialna za walidacjê formularzy dodawania, edycji grupy
  */
-public class GroupValidator {
+public class GroupForm {
 	
 	@NotNull
 	@Size(min=3, max=255)
@@ -23,7 +23,7 @@ public class GroupValidator {
 		this.namegroups = namegroups;
 	}
 
-	public GroupValidator() {
+	public GroupForm() {
 		super();
 	}
 	

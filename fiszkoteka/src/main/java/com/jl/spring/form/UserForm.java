@@ -1,4 +1,4 @@
-package com.jl.spring.validator;
+package com.jl.spring.form;
 
 import javax.validation.constraints.Size;
 
@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *	Walidator formularza u¿ytkownika
  *
  */
-public class UserValidator {
+public class UserForm {
 
 	@NotEmpty
 	@Size(min=8, max=255)
@@ -21,7 +21,7 @@ public class UserValidator {
 	//rola
 	private String role;
 
-	public UserValidator() {
+	public UserForm() {
 		super();
 	}
 

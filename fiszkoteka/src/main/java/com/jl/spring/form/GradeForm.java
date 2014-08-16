@@ -1,4 +1,4 @@
-package com.jl.spring.validator;
+package com.jl.spring.form;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
  * @author oem1
  *	Klasa odpowiedzialna za walidacjê formularzy dodawania, edycji ocen
  */
-public class GradeValidator {
+public class GradeForm {
 
 	@Min(1) @Max(6) @NotNull
 	//wartoœæ oceny

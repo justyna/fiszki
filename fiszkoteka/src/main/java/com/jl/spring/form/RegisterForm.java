@@ -1,4 +1,4 @@
-package com.jl.spring.validator;
+package com.jl.spring.form;
 
 import javax.validation.constraints.Size;
 
@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Email;
  * @author oem1
  * Walidator formularza rejestracji
  */
-public class RegisterValidator {
+public class RegisterForm {
 
 	@Email
 	//email
@@ -41,12 +41,12 @@ public class RegisterValidator {
 		this.repassword = repassword;
 	}
 	
-	public RegisterValidator() {
+	public RegisterForm() {
 		super();
 		
 	}
 	
-	public RegisterValidator(String email, String password, String repassword) {
+	public RegisterForm(String email, String password, String repassword) {
 		super();
 		this.email = email;
 		this.password = password;

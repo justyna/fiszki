@@ -1,4 +1,4 @@
-package com.jl.spring.validator;
+package com.jl.spring.form;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
