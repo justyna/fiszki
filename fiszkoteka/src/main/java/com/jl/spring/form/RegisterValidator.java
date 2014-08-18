@@ -1,25 +1,30 @@
 package com.jl.spring.form;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * 
  * @author oem1
  * Walidator formularza rejestracji
  */
-public class RegisterForm {
+public class RegisterValidator {
 
-	@Email
+	@NotEmpty(message="Musisz podaæ email")
+	@Email(message="Nie poprawny format e-maila")
 	//email
 	private String email;
-	@Size(min=8, max=255)
+	@NotEmpty(message="Podaj has³o")
+	@Size(min=8, max=255, message="Liczba znaków has³a powinna siê zawieraæ w przedziale")
 	//has³o
 	private String password;
 	
+	@NotEmpty(message="Podaj powtórzone has³o")
 	//Wyrazenia regularne????
-	@Size(min=8, max=255)
+	@Size(min=8, max=255, message="Liczba znaków has³a powinna siê zawieraæ w przedziale")
 	private String repassword;
 	
 	public String getEmail() {
@@ -41,12 +46,12 @@ public class RegisterForm {
 		this.repassword = repassword;
 	}
 	
-	public RegisterForm() {
+	public RegisterValidator() {
 		super();
 		
 	}
 	
-	public RegisterForm(String email, String password, String repassword) {
+	public RegisterValidator(String email, String password, String repassword) {
 		super();
 		this.email = email;
 		this.password = password;

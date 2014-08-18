@@ -2,19 +2,21 @@ package com.jl.spring.form;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 /**
  * 
  * @author oem1
  * Klasa odpowiedzialna za walidacjê formularzy dodawania, edycji wi¹zki
  */
-public class BundleForm {
+public class BundleValidator {
 	
-	@NotNull
+	@NotEmpty(message="Nale¿y podaæ nazwê wi¹zki")
 	@Size(min=3, max=255, message="Liczba znaków powinna zawieraæ siê w przedziale 3 a 255.")
 	//nazwa
 	private String name;
 	
-	@NotNull
+	@NotEmpty(message="Nale¿y siê zdecydowaæ czy wi¹zka bêdzie widoczna dla wszystkich-> publiczna czy te¿ prywatna")
 	//zmienna odpowiedzialna za dostêp do wi¹zki, jeœli jest true-> oznacza to, ¿e wi¹zka jest wi¹zk¹ publiczn¹ dostêpn¹ dla wszystkich, jeœli jest false-> wi¹zka jest widoczna tylko dla u¿ytkownika
 	private String visible;
 	
@@ -41,13 +43,13 @@ public class BundleForm {
 		return name;
 	}
 
-	public BundleForm(String name, String visible) {
+	public BundleValidator(String name, String visible) {
 		super();
 		this.name = name;
 		this.visible = visible;
 	}
 
-	public BundleForm() {
+	public BundleValidator() {
 		
 		this.name = "";
 		this.visible= "";

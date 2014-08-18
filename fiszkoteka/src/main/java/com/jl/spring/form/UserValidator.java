@@ -10,10 +10,10 @@ import org.hibernate.validator.constraints.NotEmpty;
  *	Walidator formularza u¿ytkownika
  *
  */
-public class UserForm {
+public class UserValidator {
 
-	@NotEmpty
-	@Size(min=8, max=255)
+	@NotEmpty(message="Musisz podaæ nowe has³o")
+	@Size(min=8, max=255, message="Has³o powinno zawieraæ siê w przedziale 8 a 255")
 	//has³o
 	private String pass;
 	
@@ -21,7 +21,7 @@ public class UserForm {
 	//rola
 	private String role;
 
-	public UserForm() {
+	public UserValidator() {
 		super();
 	}
 

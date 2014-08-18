@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
  * @author oem1
  * Walidator formularza wyszukiwarki
  */
-public class SearchForm {
+public class SearchValidator {
 
 	@Size(max=255, message="Liczba znaków powinna byæ mniejsza ni¿ 255.")
 	//tekst do wyszukania
@@ -20,7 +20,7 @@ public class SearchForm {
 		this.searchText = searchText;
 	}
 
-	public SearchForm() {
+	public SearchValidator() {
 		super();
 		searchText ="";
 	}

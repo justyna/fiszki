@@ -5,18 +5,23 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * 
  * @author oem1
  *	Klasa odpowiedzialna za walidacjê formularzy dodawania, edycji ocen
  */
-public class GradeForm {
+public class GradeValidator {
 
-	@Min(1) @Max(6) @NotNull
+	@Min(value=1, message="Wartoœæ minimalna oceny to 1") 
+	@Max(value=6, message="Wartoœæ maksymalna oceny to 6") 
+	@NotNull(message="Nale¿y podaæ wartoœæ oceny w skali od 1 do 6")
 	//wartoœæ oceny
 	private Integer grade;
 	
-	@Size(min=3, max=255) @NotNull
+	@Size(min=3, max=255, message="Liczba znaków musi zawieraæ siê w przedziale miêdzy 3 a 255") 
+	@NotEmpty(message="Nale¿y podaæ opis oceny")
 	//Opis oceny za co
 	private String forwhat;
 	

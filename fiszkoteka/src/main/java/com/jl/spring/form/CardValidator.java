@@ -2,16 +2,21 @@ package com.jl.spring.form;
 
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * 
  * @author oem1
  * Klasa odpowiedzialna za walidacjê formularzy dodawania, edycji fiszek
  */
-public class CardForm {
+public class CardValidator {
 
+	@NotEmpty(message="Nale¿y podaæ jêzyk originalnego s³owa")
 	@Size(min=3, max=255, message="Liczba znaków powinna zawieraæ siê w przedziale 3 a 255.")
 	//jêzyk s³owa
 	 private String langword;
+	
+	@NotEmpty(message="Nale¿y podaæ jêzyk t³umaczenia")
 	@Size(min=3, max=255, message="Liczba znaków powinna zawieraæ siê w przedziale 3 a 255.")
 	//jêzyk t³umaczenia 
 	private String langtranslation;
@@ -19,19 +24,23 @@ public class CardForm {
 	 private String mp3file="BRAK";
 	 //œcie¿ka do pliku z obrazkiem
 	 private String picture="BRAK";
+	 
 	 @Size(min=3, max=255, message="Liczba znaków powinna zawieraæ siê w przedziale 3 a 255.")
 	//definicja
 	 private String definition;
+	 @NotEmpty(message="Nale¿y podaæ s³owo")
 	 @Size(min=3, max=255, message="Liczba znaków powinna zawieraæ siê w przedziale 3 a 255.")
 	 //s³owo
 	 private String word;
+	 
+	 @NotEmpty(message="Nale¿y podaæ t³umaczenie s³owa")
 	 @Size(min=3, max=255, message="Liczba znaków powinna zawieraæ siê w przedziale 3 a 255.")
 	 //t³umaczenie
 	 private String translation;
 	 
 	 
 	 
-	 public CardForm(String langword, String langtranslation, String mp3file,
+	 public CardValidator(String langword, String langtranslation, String mp3file,
 			String picture, String definition, String word, String translation) {
 		super();
 		this.langword = langword;
@@ -43,7 +52,7 @@ public class CardForm {
 		this.translation = translation;
 	}
 
-	 public CardForm() {
+	 public CardValidator() {
 			this.langword = "";
 			this.langtranslation = "";
 			this.mp3file = "";
