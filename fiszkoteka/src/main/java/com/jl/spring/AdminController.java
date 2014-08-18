@@ -17,7 +17,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.tags.Param;
 
 import com.jl.spring.data.DBUser;
-import com.jl.spring.form.UserForm;
+import com.jl.spring.form.UserValidator;
 import com.jl.spring.service.UserService;
 import com.jl.spring.util.ROLE;
 
@@ -66,7 +66,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "editform", params = "ok", method = RequestMethod.POST)
-	public String editOK(Model model, @Valid UserForm userValidator,
+	public String editOK(Model model, @Valid UserValidator userValidator,
 			BindingResult result, HttpServletRequest request) {
 
 		// Pobranie id u¿ytkownika

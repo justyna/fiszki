@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jl.spring.data.DBUser;
-import com.jl.spring.form.RegisterForm;
+import com.jl.spring.form.RegisterValidator;
 import com.jl.spring.form.RegistrationValidation;
 import com.jl.spring.service.UserService;
 
@@ -38,9 +39,9 @@ public class RegistrationController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public String showRegistration(Map model) {
-		RegisterForm registerValidator = new RegisterForm();
-		model.put("register", registerValidator);
+	public String showRegistration(Model model) {
+		RegisterValidator register = new RegisterValidator();
+		model.addAttribute("register", register);
 		return "/user/register";
 		
 	}
@@ -53,10 +54,14 @@ public class RegistrationController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String processRegistration(@Valid RegisterForm registerValidator, BindingResult result, Model model) {
-		rv.validate(registerValidator, result);
+	public String processRegistration(@Valid RegisterValidator register, BindingResult result, Model model) {
+		rv.validate(register, result);
 		
 		if(result.hasErrors()) {
+			System.out.println("èLE"+ result.getErrorCount());
+			model.addAttribute("register", register);
+			
+			
 			return "/user/register";
 		}
 		model.addAttribute("email", result.getFieldValue("email"));

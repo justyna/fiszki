@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jl.spring.data.DBBundle;
-import com.jl.spring.form.BundleForm;
-import com.jl.spring.form.SearchForm;
+import com.jl.spring.form.BundleValidator;
+import com.jl.spring.form.SearchValidator;
 import com.jl.spring.service.BundleService;
 import com.jl.spring.service.CardService;
 import com.jl.spring.service.UserService;
@@ -46,7 +46,7 @@ public class BundleController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String bundleList(Model model) {
 		List<DBBundle> bundles = bundleService.getAllPublicBundles();
-		SearchForm searchValidator = new SearchForm();
+		SearchValidator searchValidator = new SearchValidator();
 		model.addAttribute("search", searchValidator);
 		model.addAttribute("bundles", bundles);
 		return "/bundle/bundlelist";
@@ -60,7 +60,7 @@ public class BundleController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add")
-	public String addBundlePost(@Valid BundleForm bundleValidator,
+	public String addBundlePost(@Valid BundleValidator bundleValidator,
 			BindingResult result, Model model) {
 
 		DBBundle bundle = new DBBundle();
@@ -97,7 +97,7 @@ public class BundleController {
 	 * @return
 	 */
 	@RequestMapping(value = "/edit")
-	public String editBundle(@Valid BundleForm bundleValidator,
+	public String editBundle(@Valid BundleValidator bundleValidator,
 			BindingResult result, Model model, @RequestParam int id) {
 		DBBundle bundle = bundleService.findBundleById(id);
 		model.addAttribute("bundle", bundle);
@@ -155,7 +155,7 @@ public class BundleController {
 				userDetail.getUsername()).getIdUser();
 
 		List<DBBundle> bundles = bundleService.findByUserId(id, null, null);
-		SearchForm searchValidator = new SearchForm();
+		SearchValidator searchValidator = new SearchValidator();
 		model.addAttribute("search", searchValidator);
 		model.addAttribute("bundles", bundles);
 
@@ -170,7 +170,7 @@ public class BundleController {
 	 * @return
 	 */
 	@RequestMapping(value = "/searchOwn", method = RequestMethod.POST)
-	public String searchBundlePost(@Valid SearchForm searchValidator,
+	public String searchBundlePost(@Valid SearchValidator searchValidator,
 			BindingResult result, Model model) {
 		// Pobranie id zalogowanego u¿ytkownika
 		Authentication auth = SecurityContextHolder.getContext()

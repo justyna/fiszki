@@ -10,9 +10,10 @@
 <title>Rejestracja</title>
 </head>
 <body>
-	<jsp:include page="../menu/menuuser.jsp" />
+	
 	<form:form method="post" commandName="register">
 		<table>
+		<tr><form:errors path="*"/></tr>
 		<tr>
 			<td>
 				<label for="emailId">Email</label>

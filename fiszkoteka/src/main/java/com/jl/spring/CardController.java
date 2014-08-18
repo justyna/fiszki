@@ -10,13 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jl.spring.data.DBCard;
-import com.jl.spring.form.CardForm;
+import com.jl.spring.form.CardValidator;
+import com.jl.spring.form.TestForm;
+import com.jl.spring.form.TestValidator;
 import com.jl.spring.service.CardService;
 import com.jl.spring.service.TestService;
 
@@ -30,6 +34,9 @@ public class CardController {
 	
 	@Autowired
 	private TestService testService;
+	
+	@Autowired
+	private TestValidator tv;
 
 	/**
 	 * 
@@ -40,7 +47,7 @@ public class CardController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String cardadd(@Valid CardForm cardValidator,
+	public String cardadd(@Valid CardValidator cardValidator,
 			BindingResult result, Model model, @RequestParam int id) {
 		DBCard cardDB = new DBCard();
 		model.addAttribute("card", cardDB);
@@ -73,7 +80,7 @@ public class CardController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String cardpadd(@Valid CardForm cardValidator,
+	public String cardpadd(@Valid CardValidator cardValidator,
 			BindingResult result, Model model, @RequestParam int id) {
 		DBCard cardDB = new DBCard();
 		model.addAttribute("card", cardDB);
@@ -192,8 +199,29 @@ public class CardController {
 	@RequestMapping(value = "/test")
 	public String testCard(Model model, @RequestParam int id) {
 		DBCard card = testService.chooseCard(id);
-		model.addAttribute("card", card);
-		return null;
+		TestForm testValidator = new TestForm();
+		testValidator.setId(card.getIdcard());
+		testValidator.setQuestion(card.getTranslation());
+		testValidator.setCorrectAnswer(card.getWord());
+		model.addAttribute("testValidator", testValidator);
+		model.addAttribute("id", id);
+		return "/card/testcard";
+	}
+	
+	@RequestMapping(value="/checkanswer")
+	public String checkCard(@Valid TestForm testValidator,
+			BindingResult result, Model model, @RequestParam int id){
+		tv.validate(testValidator, result);
+		model.addAttribute("id", id);
+		if(result.hasErrors()){
+			testValidator.setQuestion(result.getFieldValue("question").toString());
+			model.addAttribute("testValidator", testValidator);
+			
+			System.out.println("èLE");
+			return "/card/testcard";
+		}
+		System.out.println("DOBRZE");
+		return "/card/testcard";
 	}
 
 	/*

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jl.spring.data.DBGroup;
 import com.jl.spring.data.DBUser;
-import com.jl.spring.form.GroupForm;
+import com.jl.spring.form.GroupValidator;
 import com.jl.spring.service.GroupService;
 import com.jl.spring.service.UserGroupService;
 import com.jl.spring.service.UserService;
@@ -45,7 +45,7 @@ public class GroupController {
 	 */
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String addGroupGet(Model model,
-			@Valid GroupForm groupValidator, BindingResult result) {
+			@Valid GroupValidator groupValidator, BindingResult result) {
 
 		if (result.hasErrors()) {
 			model.addAttribute("group", new DBGroup());
@@ -78,7 +78,7 @@ public class GroupController {
 	 */
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String addGroupPost(Model model,
-			@Valid GroupForm groupValidator, BindingResult result) {
+			@Valid GroupValidator groupValidator, BindingResult result) {
 		if (result.hasErrors()) {
 			model.addAttribute("group", new DBGroup());
 			model.addAttribute("message", result.getFieldValue("namegroups"));
@@ -178,7 +178,7 @@ public class GroupController {
 	 */
 	@RequestMapping(value = "editname")
 	public String editnamePost(Model model,
-			@Valid GroupForm groupValidator, BindingResult result) {
+			@Valid GroupValidator groupValidator, BindingResult result) {
 		if (result.hasErrors()) {
 
 		} else {
