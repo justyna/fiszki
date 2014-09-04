@@ -19,14 +19,8 @@
       </button>
       <a class="navbar-brand" href="#">Brand</a>
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Dodaj użytkownika</a></li>
-       </ul>
        <a href="/spring/logout">WYLOGUJ</a>
-    </div><!-- /.navbar-collapse -->
+    
   </div><!-- /.container-fluid -->
  
 </nav>

@@ -9,16 +9,18 @@
 </head>
 <body>
 	<table>
-	<tr>
+	
 	<c:forEach items="${cards}" var="card">
+	<tr>
 	<td>${card.word}</td>
 	<td>${card.translation}</td>
 	<td>${card.numberanswer}</td>
 	<td>${card.incorrect}</td>
 	<td>${card.correct}</td>
 	<td><a href="/spring/card/show?id=${card.idcard}"><button>Pokaż</button></a></td>
-	</c:forEach>
 	</tr>
+	</c:forEach>
+	
 </table>
 </body>
 </html>

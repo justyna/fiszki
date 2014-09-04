@@ -68,7 +68,7 @@ public class BundleController {
 		model.addAttribute("visible", VISIBLE.values());
 		if (result.hasErrors()) {
 
-			model.addAttribute("message", result.getFieldErrors().toString());
+			//model.addAttribute("message", result.getFieldErrors().toString());
 			return "/bundle/addbundle";
 
 		} else {

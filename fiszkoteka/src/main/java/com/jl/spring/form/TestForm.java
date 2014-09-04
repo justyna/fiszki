@@ -1,19 +1,18 @@
 package com.jl.spring.form;
 
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TestForm {
 
-	private Integer id;
+	private Integer idCard;
 	
 	private String question;
 	
-	@NotEmpty(message="Podaj has≥o")
+	@NotEmpty(message="Podaj odpowiedü")
 	private String answer;
 	
-	private String correctAnswer;
+	//private String correctAnswer;
 
 	public String getQuestion() {
 		return question;
@@ -33,21 +32,21 @@ public class TestForm {
 
 	
 	
-	public Integer getId() {
-		return id;
+	public Integer getIdCard() {
+		return idCard;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdCard(Integer id) {
+		this.idCard = id;
 	}
 
-	public String getCorrectAnswer() {
+/*	public String getCorrectAnswer() {
 		return correctAnswer;
 	}
 
 	public void setCorrectAnswer(String correctAnswer) {
 		this.correctAnswer = correctAnswer;
-	}
+	}*/
 
 	public TestForm() {
 	}

@@ -1,5 +1,7 @@
 package com.jl.spring.service;
 
+import java.util.HashMap;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -26,7 +28,7 @@ public class TestService {
 			Query query = session.createSQLQuery("Select * from cards where idbundle=:id order by correct").addEntity(DBCard.class).setParameter("id", idBundle);
 					
 			
-			card =(DBCard)query.uniqueResult();
+			card =(DBCard)(query.setMaxResults(1).uniqueResult());
 			
 		} catch (HibernateException e) {
 
@@ -72,5 +74,19 @@ public class TestService {
 			session.close();
 		}
 	}
+
+/*public HashMap<String, Object> checkAnswer(Integer idCard, String answer) {
+		DBCard card = cardService.findCardById(idCard);
+		HashMap checkedAnswer= new HashMap<String, Object>();
+		checkedAnswer.put("correctAnswer", card.getCorrect());
+		if(card.getWord().toLowerCase().equals(answer.toLowerCase())){
+			updateResult(idCard, 1);
+			chcekedAnswer.
+		} else {
+			updateResult(idCard, -1);
+			return false;
+		}
+		
+	}*/
 
 }

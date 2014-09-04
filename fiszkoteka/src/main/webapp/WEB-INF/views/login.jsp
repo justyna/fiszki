@@ -1,7 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page session="true"%>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login Page</title>
 <style>
 .error {
@@ -35,7 +38,7 @@
 }
 </style>
 </head>
-<body onload='document.loginForm.username.focus();'>
+<body>
 
 	<h1>Spring Security Login Form (Database + Hibernate Authentication)</h1>
 
@@ -55,16 +58,19 @@
 
 			<table>
 				<tr>
-					<td>User:</td>
+					<td>Login:</td>
 					<td><input type='text' name='username'></td>
 				</tr>
 				<tr>
-					<td>Password:</td>
+					<td>Hasło:</td>
 					<td><input type='password' name='password' /></td>
 				</tr>
 				<tr>
-					<td colspan='2'><input name="submit" type="submit"
+					<td colspan='2'><input name="Zaloguj" type="submit"
 						value="submit" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><a href="/spring/remind">Zapomniałem hasła</a></td>
 				</tr>
 			</table>
 

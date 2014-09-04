@@ -21,11 +21,12 @@ public class CardValidator {
 	//jêzyk t³umaczenia 
 	private String langtranslation;
 	//œcie¿ka do pliku z nagraniem wymowy
-	 private String mp3file="BRAK";
+	// private String mp3file="BRAK";
 	 //œcie¿ka do pliku z obrazkiem
-	 private String picture="BRAK";
+	 //private String picture="BRAK";
 	 
-	 @Size(min=3, max=255, message="Liczba znaków powinna zawieraæ siê w przedziale 3 a 255.")
+	 
+	 //@Size(min=3, max=255, message="Liczba znaków powinna zawieraæ siê w przedziale 3 a 255.")
 	//definicja
 	 private String definition;
 	 @NotEmpty(message="Nale¿y podaæ s³owo")
@@ -45,8 +46,8 @@ public class CardValidator {
 		super();
 		this.langword = langword;
 		this.langtranslation = langtranslation;
-		this.mp3file = mp3file;
-		this.picture = picture;
+	//	this.mp3file = mp3file;
+	//	this.picture = picture;
 		this.definition = definition;
 		this.word = word;
 		this.translation = translation;
@@ -55,8 +56,8 @@ public class CardValidator {
 	 public CardValidator() {
 			this.langword = "";
 			this.langtranslation = "";
-			this.mp3file = "";
-			this.picture = "";
+	//		this.mp3file = "";
+	//		this.picture = "";
 			this.definition = "";
 			this.word = "";
 			this.translation = "";
@@ -88,7 +89,7 @@ public class CardValidator {
 
 
 
-		public String getMp3file() {
+	/*	public String getMp3file() {
 			return mp3file;
 		}
 
@@ -109,7 +110,7 @@ public class CardValidator {
 		public void setPicture(String picture) {
 			this.picture = picture;
 		}
-
+*/
 
 
 		public String getDefinition() {

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,6 +8,7 @@
 </head>
 <body>
 <jsp:include page="../menu/menuuser.jsp" />
+<div class="container">
 	<br/>
 	${card.word}
 	<br/>
@@ -19,6 +20,13 @@
 	<br/>
 	${card.definition}
 	<br/>
+	 <img src="http://localhost:8080/spring/resources/data/${card.picture}" alt="Brak zdjęcia" height="42" width="42"> 
 	
+	<br/>
+	<audio controls>
+  		<source src="http://localhost:8080/spring/resources/data/${card.mp3file}" type="audio/mpeg">
+  		Your browser does not support the audio element.
+	</audio>
+</div>
 </body>
 </html>

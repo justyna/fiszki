@@ -6,9 +6,11 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
@@ -17,10 +19,17 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.jl.spring.data.DBUser;
+import com.jl.spring.form.RemindPasswordValidator;
+import com.jl.spring.form.TestForm;
+import com.jl.spring.service.MailService;
+import com.jl.spring.service.UserService;
 
 /**
  * Handles requests for the application home page.
@@ -28,6 +37,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private MailService mailService;
+	
 	/**
 	 * 
 	 * @return
@@ -131,6 +146,36 @@ public class HomeController {
 		model.setViewName("403");
 		return model;
 
+	}
+	
+	@RequestMapping(value="/remind")
+	public String remindPassword(Model model) {
+		RemindPasswordValidator remindPasswordValidator = new RemindPasswordValidator();
+		model.addAttribute("remindPasswordValidator", remindPasswordValidator);
+		return "/user/remindpassword";
+	}
+	
+	@RequestMapping(value="/send")
+	public String sendPassword(@Valid RemindPasswordValidator remindPasswordValidator,
+			BindingResult result, Model model) {
+		
+		if(result.hasErrors()){
+			return "/user/remindpassword";
+		}
+		DBUser user = userService.findUserByEmail(result.getFieldValue("email").toString());
+		
+		if(user == null){
+			model.addAttribute("message", "<b>U¿ytkownik o podanym adresie email nie istnieje lub nie jest aktywny</b>");
+		} else {
+			model.addAttribute("message", "<b>Na podany adres wys³ano email z has³em</b>");
+			mailService.sendMail(user.getEmail(), user.getPass());
+		}
+		return "/user/remindpassword";
+	}
+	
+	@RequestMapping(value="/logout")
+	public String logout(Model model) {
+		return "/logout";
 	}
 	
 }

@@ -9,8 +9,10 @@
 </head>
 <body>
 <jsp:include page="../menu/menuuser.jsp" />
-	<form:form method="post" commandName="card" >
+	<form:form method="post" modelAttribute="cardValidator" 
+	enctype="multipart/form-data" action="/spring/card/addform?${_csrf.parameterName}=${_csrf.token}&id=${id}">
 	<table>
+	<tr><form:errors path="*"></form:errors></tr>
 	<tr>
 		<td><label  for="wordId">Słowo</label></td>
 		<td><form:input id="wordId" path="word"/></td>
@@ -37,14 +39,13 @@
 		<td><form:errors path="definition"></form:errors></td>
 	</tr>
 	<tr>
-		<td><label for="pictureId">Obraz</label></td>
-		<td><form:input id="pictureId" path="picture" /></td>
-		<td><form:errors path="picture"></form:errors></td>
+		<td><label>Obraz</label></td>
+		<td><input name="image" type="file"></input></td>
+		
 	</tr>
 	<tr>
-		<td><label for="mp3fileId">Wymowa</label></td>
-		<td><form:input id="mp3fileId" path="mp3file" /></td>
-		<td></td>
+		 <td><label>Wymowa</label></td>
+		<td><input name="mp3file" type="file"></input></td>
 	</tr>
 	<tr>
 		<td colspan="2">

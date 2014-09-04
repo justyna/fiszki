@@ -9,15 +9,18 @@
 </head>
 <body>
 	<jsp:include page="../menu/menuuser.jsp" />
-	<form:form commandName="testValidator"  action="/spring/card/checkanswer?id=${id}">
+	<form:form modelAttribute="testValidator"  action="/spring/card/checkanswer?id=${id}">
 		<form:errors path="*"/>
 		<br/>
 		<label></label>
-		<form:input disabled="true" path="question"/>
+		<form:input path="idCard" readonly="true" cssClass="hidden" ></form:input>
+		<label></label>
+		<form:input  path="question" readonly="true"/>
 		<label></label>
 		<form:input path="answer"/>
 		<form:errors path="answer"></form:errors>
-		<form:input type="submit" path=""></form:input>
+		
+		<form:button  >Sprawdź</form:button>
 	</form:form>
 </body>
 </html>

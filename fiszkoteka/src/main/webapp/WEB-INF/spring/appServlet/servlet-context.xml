@@ -33,13 +33,13 @@
 	
 	<beans:bean id="multipartResolver"
 	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	<beans:property name="maxUploadSize" value="100000"></beans:property>
-	<beans:property name="uploadTempDir" ref="uploadDirResource"></beans:property>
+	<beans:property name="maxUploadSize" value="100000000"></beans:property>
+	<!--  <beans:property name="uploadTempDir" ref="uploadDirResource"></beans:property>-->
 	</beans:bean>
 	
-	<beans:bean id="uploadDirResource"
+	<!-- <beans:bean id="uploadDirResource"
 	class="org.springframework.core.io.FileSystemResource">
 	<beans:constructor-arg>
 	<beans:value>C:/pliki</beans:value>
-	</beans:constructor-arg></beans:bean>
+	</beans:constructor-arg></beans:bean> -->
 </beans:beans>

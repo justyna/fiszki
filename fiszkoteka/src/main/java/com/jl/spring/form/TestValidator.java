@@ -14,11 +14,11 @@ public class TestValidator implements Validator {
 	}
 	
 	public void validate(Object target, Errors errors) {
-		TestForm test = (TestForm) target;
+		/*TestForm test = (TestForm) target;
 		if(!test.getAnswer().equals(test.getCorrectAnswer())) {
 			errors.rejectValue("answer", "matchingPassword.test.answer",
 			          "Poprawna odpowiedü to:"+test.getCorrectAnswer());
-		}
+		}*/
 	}
 
 }

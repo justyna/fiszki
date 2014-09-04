@@ -17,8 +17,9 @@
 </c:if>
 <br/>
 <table>
-	<tr>
+	
 	<c:forEach items="${cards}" var="card">
+	<tr>
 	<td>${card.word}</td>
 	<td>${card.translation}</td>
 	<td>${card.numberanswer}</td>
@@ -27,8 +28,9 @@
 	<td><a href="/spring/card/show?id=${card.idcard}"><button>Pokaż</button></a></td>
 	<td><a href="/spring/card/edit?id=${card.idcard}"><button>Edytuj</button></a></td>
 	<td><a href="/spring/card/deleteconfirmation?id=${card.idcard}"><button>Usuń</button></a></td>
-	</c:forEach>
 	</tr>
+	</c:forEach>
+	
 </table>
 </body>
 </html>

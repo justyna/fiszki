@@ -19,8 +19,8 @@ public class TestTest {
 	
 	@Test
 	public void DBCardIsNull(){
-		DBCard card=testService.chooseCard(1);
-		Assert.assertNull(card);
+		DBCard card=testService.chooseCard(7);
+		Assert.assertNotNull(card);
 	}
 
 }
